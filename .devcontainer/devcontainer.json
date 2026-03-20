@@ -1,18 +1,18 @@
 {
+  "name": "Ubuntu with SSH for Codespaces",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
-    "ghcr.io/devcontainers/features/desktop-lite:1": {
-      "version": "latest",
-      "password": "vscode"   // ya "noPassword" agar password nahi chahiye
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
     }
   },
-  "forwardPorts": [6080],
+  "forwardPorts": [2222],
   "portsAttributes": {
-    "6080": {
-      "label": "Desktop GUI",
-      "onAutoForward": "openBrowser"
+    "2222": {
+      "label": "SSH Port",
+      "onAutoForward": "notify"
     }
   },
-  "runArgs": ["--shm-size=1g"],
-  "postCreateCommand": "echo 'GUI tayyar hai! Ports tab mein 6080 kholo'"
+  "remoteUser": "vscode",
+  "postCreateCommand": "echo 'SSH setup done! Password set karne ke liye: sudo passwd vscode' && echo 'Phir gh cs ssh try kar'"
 }
