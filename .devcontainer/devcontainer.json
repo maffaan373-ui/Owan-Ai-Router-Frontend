@@ -1,7 +1,18 @@
 {
-    "name": "Ubuntu Desktop GUI",
-    "features": {
-        "ghcr.io/devcontainers/features/desktop-lite:1": {}
-    },
-    "forwardPorts": [6080]
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/desktop-lite:1": {
+      "version": "latest",
+      "password": "vscode"   // ya "noPassword" agar password nahi chahiye
+    }
+  },
+  "forwardPorts": [6080],
+  "portsAttributes": {
+    "6080": {
+      "label": "Desktop GUI",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "runArgs": ["--shm-size=1g"],
+  "postCreateCommand": "echo 'GUI tayyar hai! Ports tab mein 6080 kholo'"
 }
